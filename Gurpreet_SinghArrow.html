@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Hail 147</h2>
+    <ul></ul>
+    <p></p>
+</body>
+<script>
+let hail = num => (num%2) ? 3*num+1 : num/2;
+let seq =[147];
+while (seq[seq.length-1] !=1){
+      seq.push(hail(seq[seq.length-1]));
+}
+</script>
+</html>
