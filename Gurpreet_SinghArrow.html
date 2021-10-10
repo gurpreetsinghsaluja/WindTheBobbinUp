@@ -8,18 +8,39 @@
 </head>
 <body>
     <h2>Hail 147</h2>
-    <ul></ul>
+    <ul id="list"></ul>
     <p id="para"></p>
+    <script>
+        let hail = num => (num%2) ? 3*num+1 : num/2;
+        let seq =[147];
+        while (seq[seq.length-1] !=1){
+              seq.push(hail(seq[seq.length-1]));
+        }
+        let checkNum = number => number>500;
+        var filt = seq.filter(checkNum);
+        document.getElementById('para').innerHTML = "There are " + filt.length + " that  are greater than 500";
+        let mapSeq = seq.map(no =>no.toString().length);
+        
+        let freq = mapSeq.reduce((ac,x) => ac.has(x)? ac.set(x,ac.get(x)+1):ac.set(x,1), new Map());
+        let sorted = Array.from(freq).sort((a,b) => a[0] - b[0]);
+        let max = Math.max(...sorted.map(x=> x[1]));
+        
+        for (var i = 0; i < sorted.length; i++) {
+            var item = document.createElement('li');
+            
+            item.appendChild(document.createTextNode(sorted[i][0]+":"));
+            
+            let meter1= document.createElement("meter");
+            meter1.setAttribute("max",max);
+            meter1.setAttribute("value",sorted[i][1]);
+            item.appendChild(meter1);
+            
+            item.appendChild(document.createTextNode(sorted[i][1]));
+            
+            document.getElementById("list").appendChild(item);
+        }
+        </script>
+    
 </body>
-<script>
-let hail = num => (num%2) ? 3*num+1 : num/2;
-let seq =[147];
-while (seq[seq.length-1] !=1){
-      seq.push(hail(seq[seq.length-1]));
-}
-let checkNum = number => number>500;
-var filt = seq.filter(checkNum);
-document.getElementById('para').innerHTML = "There are " + filt.length + " that  are greater than 500";
-let mapSeq = seq.map(no =>no.toString().length);
-</script>
+
 </html>
