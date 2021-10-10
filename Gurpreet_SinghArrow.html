@@ -9,7 +9,7 @@
 <body>
     <h2>Hail 147</h2>
     <ul></ul>
-    <p></p>
+    <p id="para"></p>
 </body>
 <script>
 let hail = num => (num%2) ? 3*num+1 : num/2;
@@ -17,5 +17,9 @@ let seq =[147];
 while (seq[seq.length-1] !=1){
       seq.push(hail(seq[seq.length-1]));
 }
+let checkNum = number => number>500;
+var filt = seq.filter(checkNum);
+document.getElementById('para').innerHTML = "There are " + filt.length + " that  are greater than 500";
+let mapSeq = seq.map(no =>no.toString().length);
 </script>
 </html>
