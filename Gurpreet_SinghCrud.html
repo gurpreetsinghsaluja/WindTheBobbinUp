@@ -6,29 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    li:hover {
+      color: cyan;
+    }
+</style>
 <body>
-    <h2></h2>
-    <ul></ul>
-    <p></p>
+    <h2 id="heading"></h2>
+    <p id="paragraph"></p>
+    <ul id="ulist"></ul>
 </body>
 <script>
-    var arr =[
-        "Wind the bobbin up, wind the bobbin up",
-        "Pull, pull, clap clap clap",
-        "Wind the bobbin up, wind the bobbin up",
-        "Pull, pull, clap clap clap",
-        "Point to the ceiling, point to the floor",
-        "Point to the window, point to the door",
-        "Clap your hands together, 1, 2, 3",
-        "Put your hands down on your knees",
-    ];
-    var interact = Array(8).fill(0);
+    //var arr =
+   // var interact = ;
     var rhyme = {
         src:"https://bilingualkidspot.com/2018/04/23/popular-nursery-rhymes-for-kids-english/",
         title: "Wind the bobbin up",
-        lines: arr,
-        lineInfo: interact
+        lines: [
+            "Wind the bobbin up, wind the bobbin up",
+            "Pull, pull, clap clap clap",
+            "Wind the bobbin up, wind the bobbin up",
+            "Pull, pull, clap clap clap",
+            "Point to the ceiling, point to the floor",
+            "Point to the window, point to the door",
+            "Clap your hands together, 1, 2, 3",
+            "Put your hands down on your knees",
+            ],
+        lineInfo: Array(8).fill(0)
     }
+    document.getElementById("heading").innerHTML=rhyme.title;
+    document.getElementById("paragraph").innerHTML=rhyme.src;
+    
+    for (let i = 0; i < rhyme.lines.length; i++) {
+        var uitem = document.createElement('li');
+        uitem.textContent=rhyme.lines[i];
+        uitem.innerHTML += ` <span id=${i}>${rhyme.lineInfo[i]}</span>`;
+        document.getElementById("ulist").appendChild(uitem);
 
+        uitem.addEventListener("mouseenter",function(){
+            rhyme.lineInfo[i]++;
+            document.getElementById(`${i}`).innerText = rhyme.lineInfo[i];
+            
+        })
+    }
 </script>
 </html>
