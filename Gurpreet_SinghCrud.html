@@ -36,7 +36,11 @@
     }
     document.getElementById("heading").innerHTML=rhyme.title;
     document.getElementById("paragraph").innerHTML=rhyme.src;
-    
+    // If the array is not changed, the localStorage will be null intitally, as we are required to change localStorage only when array changes. So checking if it is null.
+    if (localStorage.getItem('bobbin')!== null ){
+        //if array is not null, then updating lineInfo with localStorage
+       rhyme.lineInfo=JSON.parse(localStorage.getItem('bobbin'));
+    }
     for (let i = 0; i < rhyme.lines.length; i++) {
         var uitem = document.createElement('li');
         uitem.textContent=rhyme.lines[i];
@@ -44,10 +48,15 @@
         document.getElementById("ulist").appendChild(uitem);
 
         uitem.addEventListener("mouseenter",function(){
+            //updating lineInfo on mouseenter event
             rhyme.lineInfo[i]++;
+            //updating the number in list item
             document.getElementById(`${i}`).innerText = rhyme.lineInfo[i];
-            
+            jso = JSON.stringify(rhyme.lineInfo);
+            // saving array to localStorage whenever it is changed
+            localStorage.setItem('bobbin', jso);
         })
     }
+    //console.log(localStorage.getItem('bobbin'));
 </script>
 </html>
